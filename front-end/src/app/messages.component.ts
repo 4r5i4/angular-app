@@ -12,7 +12,7 @@ import { WebService } from './web.service';
             <mat-card class="card" color="grey">
             <mat-card-header>
                 <div mat-card-avatar class="user-image"></div>
-                <mat-card-title>{{message.owner}}</mat-card-title>
+                <mat-card-title style="cursor: pointer" [routerLink]="['/messages', message.owner]">{{message.owner}}</mat-card-title>
                 <mat-card-subtitle>Online Status</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
