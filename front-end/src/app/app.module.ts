@@ -7,9 +7,9 @@ import { MessagesComponent } from './messages.component';
 import { WebService } from './web.service';
 import { HttpModule } from '@angular/http';
 import { NewMessageComponent } from  './new-message.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule} from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule} from '@angular/material/tabs';
 
 import { 
   MatButtonModule, 
@@ -60,7 +60,8 @@ var routes = [
     MatIconModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule
   ],
   providers: [
     WebService
