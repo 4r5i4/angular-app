@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    background: #858585
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+.card {
+    margin: 8px;
+}
+
+h1 {
+    font-family: Calibri, Times New Roman, serif;
+    text-align: center;
+    color: white;
+}
+
+
+.example-full-width {
+    min-width: 150;
+    max-width: 500px;
+    width: 100%;
+}
+
+.newcard {
+    background-color: crimson
+}
