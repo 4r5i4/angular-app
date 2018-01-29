@@ -3,12 +3,12 @@
 
 body {
     background: #bbbbbb;
-   /* top | right | bottom | left */
+    /* top | right | bottom | left */
     margin: 0 20px 20px 20px;
 }
 
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+.user-image {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png');
     background-size: cover;
 }
 
