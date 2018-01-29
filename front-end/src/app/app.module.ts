@@ -9,7 +9,7 @@ import { HttpModule } from '@angular/http';
 import { NewMessageComponent } from  './new-message.component';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatTabsModule} from '@angular/material/tabs';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { 
   MatButtonModule, 
@@ -60,7 +60,8 @@ var routes = [
     MatIconModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    MatTabsModule
+    MatFormFieldModule,
+    ReactiveFormsModule 
   ],
   providers: [
     WebService
