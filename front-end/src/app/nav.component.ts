@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { getLocaleDateTimeFormat } from '@angular/common/src/i18n/locale_data_api';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -9,9 +10,10 @@ import { getLocaleDateTimeFormat } from '@angular/common/src/i18n/locale_data_ap
     selector: 'navbar',
     template: `
         <mat-toolbar color="primary">
-            message board
+            <button mat-button routerLink="/">Message Board</button>
+            <button mat-button routerLink="/messages">Messages</button>
         </mat-toolbar>
-    `
+        `
 })
 export class NavComponent {
     constructor(){

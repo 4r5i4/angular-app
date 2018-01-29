@@ -11,17 +11,17 @@ import { WebService } from './web.service';
         <div *ngFor="let message of webService.messages">
             <mat-card class="card" color="grey">
             <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
+                <div mat-card-avatar class="user-image"></div>
                 <mat-card-title>{{message.owner}}</mat-card-title>
-                <mat-card-subtitle>Subtitle</mat-card-subtitle>
+                <mat-card-subtitle>Online Status</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <p>{{message.text}}</p>
             </mat-card-content>
             <mat-card-footer>{{timestamp}}</mat-card-footer>
             <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
             </mat-card-actions>
             </mat-card>
         </div>
