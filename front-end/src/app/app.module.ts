@@ -16,12 +16,14 @@ import {
   MatToolbarModule,
   MatInputModule
 } from '@angular/material';
+import { NavComponent } from './nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MessagesComponent,
-    NewMessageComponent
+    NewMessageComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

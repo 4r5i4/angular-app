@@ -9,7 +9,7 @@ import { WebService } from './web.service';
     selector: 'messages',
     template: `
         <div *ngFor="let message of webService.messages">
-            <mat-card class="card">
+            <mat-card class="card" color="grey">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>{{message.owner}}</mat-card-title>

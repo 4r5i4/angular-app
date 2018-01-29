@@ -13,7 +13,7 @@ export class WebService {
     messages = [];
     constructor(private http: Http, private sb: MatSnackBar){
         // it's guaranteed that by the time we are calling our service, we have a response back
-        // from getMessages()
+        // from getMessages(), we don't have to wait for another component to initially trigger it.
         this.getMessages();
     }
     /**

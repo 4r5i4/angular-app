@@ -10,20 +10,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
     selector: 'new-message',
     template: `
-    <mat-card class="new-msg-card">
+    <mat-card class="newcard">
 
         <mat-form-field>
             <input name="name" [(ngModel)]="newMessage.owner" matInput type="text" placeholder="Name" />
         </mat-form-field>
-
-        <br>
         
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="input-width">
             <textarea [(ngModel)]="newMessage.text" matInput placeholder="Message"></textarea>
         </mat-form-field>
 
         <mat-card-actions>
-            <button mat-button color="primary" (click)="post()">POST</button>
+            <button mat-raised-button color="primary"(click)="post()">POST</button>
         </mat-card-actions>
     </mat-card>
     `
