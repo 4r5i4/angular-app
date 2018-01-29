@@ -1,0 +1,16 @@
+
+<mat-card class="newcard">
+    <mat-form-field>
+        <input required [formControl]="name" [(ngModel)]="newMessage.owner" matInput type="text" placeholder="Name">
+        <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-width">
+        <textarea required [formControl]="text" [(ngModel)]="newMessage.text" matInput placeholder="Message"></textarea>
+        <mat-error *ngIf="text.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-card-actions>
+        <button mat-raised-button color="primary"(click)="post()" disabled={{fieldsNotEmpty()}}>POST</button>
+    </mat-card-actions>
+</mat-card>
