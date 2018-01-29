@@ -3,17 +3,17 @@ var app = express();
 var bodyParser = require('body-parser');
 var messages = [
     {
-        text: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.',
-        owner: 'Tim', 
-        timestamp: 'footer',
+        text: 'I\'m the lead dev',
+        owner: 'Brandin', 
+        timestamp: 'new Date()',
     },
     {
-        text: 'some text',
+        text: 'WHAT IS the meaning of all this?',
         owner: 'John',
         timestamp: new Date()
     },
     {
-        text: 'some text',
+        text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
         owner: 'Ashley',
         timestamp: new Date()
     }
