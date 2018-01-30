@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { getLocaleDateTimeFormat } from '@angular/common/src/i18n/locale_data_api';
 import { WebService } from './web.service';
+import {ActivatedRoute} from '@angular/router';
 
 
 // component decorator
@@ -28,7 +29,10 @@ import { WebService } from './web.service';
     `
 })
 export class MessagesComponent {
-    constructor(private webService: WebService){
-
+    constructor(private webService: WebService, private route: ActivatedRoute){}
+    ngOnInit() {
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        console.log(this.route.snapshot.params.name);
     }
 }
