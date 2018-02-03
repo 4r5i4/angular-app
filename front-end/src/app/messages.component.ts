@@ -28,6 +28,7 @@ import { ActivatedRoute } from '@angular/router';
         </div>
     `
 })
+// showing my brother how this shit works
 export class MessagesComponent {
     constructor(private webService: WebService, private route: ActivatedRoute){
 
