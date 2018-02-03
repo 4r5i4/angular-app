@@ -41,6 +41,11 @@ var api = express.Router();
 api.get('/messages', function(req, res) {
     res.json(messages);
 });
+api.get('/messages/:user', function(req, res) {
+    var user = req.params.user;
+    var result = messages.filter(message => message.owner == user);
+    res.json(result);
+});
 
 api.post('/messages', function(req, res) {
     messages.push(req.body);
