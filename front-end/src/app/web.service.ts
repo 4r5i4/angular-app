@@ -14,20 +14,20 @@ export class WebService {
     constructor(private http: Http, private sb: MatSnackBar){
         // it's guaranteed that by the time we are calling our service, we have a response back
         // from getMessages(), we don't have to wait for another component to initially trigger it.
-        this.getMessages();
+        this.getMessages(name);
     }
     /**
      * returns msgs once we get them via HTTP call
      * we need access to the angular HTTP service  
      * To use the Http, we will need to have it injected into the class constructor
      */  
-    async getMessages() {
-        try {
-            var response = await this.http.get( this.BASE_URL + '/messages').toPromise();
-            this.messages = response.json();
-        } catch (error) {
-            this.handleError('Unable to get messages');
-        }
+    getMessages(user) {
+            user = user ? '/' + user : '';
+            var response = this.http.get( this.BASE_URL + '/messages' + user).subscribe(response => {
+                this.messages = response.json();
+            }, error => {
+                this.handleError('Unable to get messages');
+            });
 
     }
 
