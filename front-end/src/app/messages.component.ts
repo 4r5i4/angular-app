@@ -30,10 +30,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 // showing my brother how this shit works
 export class MessagesComponent {
-    constructor(private webService: WebService, private route: ActivatedRoute){
+    constructor(private webService: WebService, private route: ActivatedRoute) {
 
     }
-    ngOnInit(){
+    ngOnInit() {
         var name = this.route.snapshot.params.name;
         this.webService.getMessages(name);
     }

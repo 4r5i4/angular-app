@@ -32,20 +32,20 @@ import * as _ from 'lodash';
 })
 export class NewMessageComponent {
 
-   
+
     constructor(private webService: WebService){}
 
     newMessage = {
-        owner: "",
-        text:   ""
-    }
+        owner: '',
+        text:   ''
+    };
     name = new FormControl('', Validators.required);
     text = new FormControl('', Validators.required);
-    
+
     // _clearNewMessageInputs() {
     //     this.newMessage.owner = '';
     //     this.newMessage.text = '';
-        
+
     // }
 
     getErrorMessage() {
@@ -56,7 +56,7 @@ export class NewMessageComponent {
         return _.isEmpty(this.newMessage.owner.trim()) || _.isEmpty(this.newMessage.text.trim());
     }
 
-    post(){
+    post() {
         this.webService.postMessage(this.newMessage);
         // this._clearNewMessageInputs();
     }
