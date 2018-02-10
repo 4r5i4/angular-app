@@ -16,7 +16,5 @@ import {MatTabsModule} from '@angular/material/tabs';
         `
 })
 export class NavComponent {
-    constructor(){
-
-    }
+    constructor() {}
 }

@@ -18,13 +18,13 @@ export class WebService {
     }
     /**
      * returns msgs once we get them via HTTP call
-     * we need access to the angular HTTP service  
+     * we need access to the angular HTTP service
      * To use the Http, we will need to have it injected into the class constructor
-     */  
+     */
     getMessages(user) {
             user = user ? '/' + user : '';
-            var response = this.http.get( this.BASE_URL + '/messages' + user).subscribe(response => {
-                this.messages = response.json();
+            var response = this.http.get( this.BASE_URL + '/messages' + user).subscribe(res => {
+                this.messages = res.json();
             }, error => {
                 this.handleError('Unable to get messages');
             });
@@ -40,7 +40,7 @@ export class WebService {
         }
     }
 
-    private handleError(error){
+    private handleError(error) {
         console.error(error);
         this.sb.open(error, 'close', {duration: 4000} )
     }
