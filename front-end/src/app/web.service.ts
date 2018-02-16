@@ -11,8 +11,9 @@ import { Subject } from 'rxjs/rx';
  */
 export class WebService {
     BASE_URL = 'http://localhost:3000/api';
-    private messages = [];
-    messageSubject = new Subject();
+    private messageStore = [];
+    private messageSubject = new Subject();
+    messages = this.messageSubject.asObservable();
     constructor(private http: Http, private sb: MatSnackBar){
         // it's guaranteed that by the time we are calling our service, we have a response back
         // from getMessages(), we don't have to wait for another component to initially trigger it.
@@ -26,8 +27,8 @@ export class WebService {
     getMessages(user) {
             user = user ? '/' + user : '';
             var response = this.http.get( this.BASE_URL + '/messages' + user).subscribe(res => {
-                this.messages = res.json();
-                this.messageSubject.next(this.messages);
+                this.messageStore = res.json();
+                this.messageSubject.next(this.messageStore);
             }, error => {
                 this.handleError('Unable to get messages');
             });
@@ -37,7 +38,8 @@ export class WebService {
     async postMessage(newMessage){
         try {
             var response = await this.http.post( this.BASE_URL + '/messages', newMessage).toPromise();
-            this.messages.push(response.json());
+            this.messageStore.push(response.json());
+            this.messageSubject.next(this.messageStore);
         } catch (error) {
             this.handleError('Unable to post a message');
         }
