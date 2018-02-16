@@ -14,6 +14,7 @@ export class WebService {
     private messageStore = [];
     private messageSubject = new Subject();
     messages = this.messageSubject.asObservable();
+
     constructor(private http: Http, private sb: MatSnackBar){
         // it's guaranteed that by the time we are calling our service, we have a response back
         // from getMessages(), we don't have to wait for another component to initially trigger it.
@@ -35,7 +36,7 @@ export class WebService {
 
     }
 
-    async postMessage(newMessage){
+    async postMessage(newMessage) {
         try {
             var response = await this.http.post( this.BASE_URL + '/messages', newMessage).toPromise();
             this.messageStore.push(response.json());
@@ -48,6 +49,6 @@ export class WebService {
 
     private handleError(error) {
         console.error(error);
-        this.sb.open(error, 'close', {duration: 4000} )
+        this.sb.open(error, 'close', {duration: 4000} );
     }
 }
