@@ -40,6 +40,8 @@ export class WebService {
         try {
             var response = await this.http.post( this.BASE_URL + '/messages', newMessage).toPromise();
             this.messageStore.push(response.json());
+            this.messageSubject.next(this.messageStore);
+
         } catch (error) {
             this.handleError('Unable to post a message');
         }
