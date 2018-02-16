@@ -36,6 +36,6 @@ export class MessagesComponent {
     ngOnInit() {
         var name = this.route.snapshot.params.name;
         this.webService.getMessages(name);
-        this.webService.messageSubject.subscribe(msgs => this.messages = msgs);
+        this.webService.messages.subscribe(msgs => this.messages = msgs);
     }
 }
