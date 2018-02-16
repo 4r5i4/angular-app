@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'messages',
     template: `
-        <div *ngFor="let message of webService.messages">
+        <div *ngFor="let message of messages">
             <mat-card class="card" color="grey">
             <mat-card-header>
                 <div mat-card-avatar class="user-image"></div>
@@ -30,11 +30,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 // showing my brother how this shit works
 export class MessagesComponent {
+    messages;
     constructor(private webService: WebService, private route: ActivatedRoute) {
-
     }
     ngOnInit() {
         var name = this.route.snapshot.params.name;
         this.webService.getMessages(name);
+        this.webService.messageSubject.subscribe(msgs => this.messages = msgs);
     }
 }

@@ -2,6 +2,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { Subject } from 'rxjs/rx';
 
 
 @Injectable()
@@ -10,7 +11,8 @@ import { MatSnackBar } from '@angular/material';
  */
 export class WebService {
     BASE_URL = 'http://localhost:3000/api';
-    messages = [];
+    private messages = [];
+    messageSubject = new Subject();
     constructor(private http: Http, private sb: MatSnackBar){
         // it's guaranteed that by the time we are calling our service, we have a response back
         // from getMessages(), we don't have to wait for another component to initially trigger it.
@@ -25,6 +27,7 @@ export class WebService {
             user = user ? '/' + user : '';
             var response = this.http.get( this.BASE_URL + '/messages' + user).subscribe(res => {
                 this.messages = res.json();
+                this.messageSubject.next(this.messages);
             }, error => {
                 this.handleError('Unable to get messages');
             });

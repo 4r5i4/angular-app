@@ -33,7 +33,7 @@ import * as _ from 'lodash';
 export class NewMessageComponent {
 
 
-    constructor(private webService: WebService){}
+    constructor(private webService: WebService) {}
 
     newMessage = {
         owner: '',
@@ -41,12 +41,6 @@ export class NewMessageComponent {
     };
     name = new FormControl('', Validators.required);
     text = new FormControl('', Validators.required);
-
-    // _clearNewMessageInputs() {
-    //     this.newMessage.owner = '';
-    //     this.newMessage.text = '';
-
-    // }
 
     getErrorMessage() {
         return 'You must enter a value';
@@ -57,8 +51,11 @@ export class NewMessageComponent {
     }
 
     post() {
-        this.webService.postMessage(this.newMessage);
-        // this._clearNewMessageInputs();
+        // trim the name: was not filtering it correctly:
+        let trimmedMessage = _.mapValues(this.newMessage, (val, key) => val.trim());
+        console.log(trimmedMessage);
+        this.webService.postMessage(trimmedMessage);
+
     }
 }
 
