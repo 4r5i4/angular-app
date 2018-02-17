@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var messages = [
     {
         text: 'I\'m the lead dev',
-        owner: 'Brandin', 
+        owner: 'Brandin',
         timestamp: 'new Date()',
     },
     {
@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 app.use(function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Accept');
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     //let express know we're done:
     next();
 });
@@ -41,6 +42,13 @@ var api = express.Router();
 api.get('/messages', function(req, res) {
     res.json(messages);
 });
+
+api.delete('/delete', function(req, res) {
+    messages = [];
+    console.log('hello');
+    res.json(req.body);
+});
+
 api.get('/messages/:user', function(req, res) {
     var user = req.params.user;
     var result = messages.filter(message => message.owner == user);

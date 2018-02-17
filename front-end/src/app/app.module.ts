@@ -35,6 +35,10 @@ var routes = [
   {
     path: 'messages/:name',
     component: MessagesComponent
+  },
+  {
+    path: 'delete',
+    component: HomeComponent
   }
 
 ];

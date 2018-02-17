@@ -47,6 +47,17 @@ export class WebService {
         }
     }
 
+    async deleteAllMessages() {
+        console.log('webservice::delete msgs');
+        var response = await this.http.delete( this.BASE_URL + '/delete').subscribe(res => {
+            this.messageStore = [];
+            this.messageSubject.next(this.messageStore);
+        }, errpr => {
+            //TODO: due to routing (that it renders the HomeComponent) we are showing the error message twice.
+            this.handleError('Unable to delete messages');
+        });
+    }
+
     private handleError(error) {
         console.error(error);
         this.sb.open(error, 'close', {duration: 4000} );
