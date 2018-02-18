@@ -53,7 +53,7 @@ export class NewMessageComponent {
     post() {
         // trim the name: was not filtering it correctly:
         let trimmedMessage = _.mapValues(this.newMessage, (val, key) => val.trim());
-        console.log(trimmedMessage);
+        // console.log(trimmedMessage);
         this.webService.postMessage(trimmedMessage);
 
     }

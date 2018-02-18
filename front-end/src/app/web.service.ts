@@ -48,7 +48,6 @@ export class WebService {
     }
 
     async deleteAllMessages() {
-        console.log('webservice::delete msgs');
         var response = await this.http.delete( this.BASE_URL + '/delete').subscribe(res => {
             this.messageStore = [];
             this.messageSubject.next(this.messageStore);

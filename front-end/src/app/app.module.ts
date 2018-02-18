@@ -10,7 +10,6 @@ import { NewMessageComponent } from './new-message.component';
 import { MatIconModule} from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule} from '@angular/material/tabs';
-
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -21,9 +20,9 @@ import {
 } from '@angular/material';
 import { NavComponent } from './nav.component';
 import { HomeComponent } from './home.component';
+import { RegisterComponent } from './register.component';
 
-
-var routes = [
+let routes = [
   {
     path: '',
     component: HomeComponent
@@ -39,6 +38,10 @@ var routes = [
   {
     path: 'delete',
     component: HomeComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 
 ];
@@ -49,7 +52,8 @@ var routes = [
     MessagesComponent,
     NewMessageComponent,
     NavComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
