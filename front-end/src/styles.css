@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 
 body {
-    background: #bbbbbb;
+    /* background: #bbbbbb; */
     /* top | right | bottom | left */
-    margin: 0 20px 20px 20px;
+    margin: 0
 }
 
 .user-image {
@@ -15,14 +15,10 @@ body {
 .card {
     /* top | right | bottom | left */
     margin: 0 0 8px 0;
-    background-color: rgb(219, 250, 232)
+    /* background-color: rgb(219, 250, 232) */
 }
 
-h1 {
-    font-family: Calibri, Times New Roman, serif;
-    text-align: center;
-    color: rgb(36, 36, 36);
-}
+
 
 
 .input-width {
@@ -34,7 +30,7 @@ h1 {
 .newcard {
     /* top | right | bottom | left */
     margin: 0 0 8px 0;
-    background-color: rgb(255, 255, 255)
+    /* background-color: rgb(255, 255, 255) */
 }
 
 .task-done {
@@ -44,3 +40,9 @@ h1 {
 .task-not-done {
     background-color: yellow;
 }
+
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
