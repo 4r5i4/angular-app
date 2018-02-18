@@ -1,17 +1,30 @@
 <mat-card class="card" color="grey">
-<div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="First name">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-          <input matInput placeholder="Last name">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-          <input matInput placeholder="Email" [formControl]="email" required>
-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <button mat-raised-button color="primary">Register</button>
-</div>
+  <div class="example-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput placeholder="First name" formControlName="firstName" [ngClass]="{'error': isValid('firstName')}">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Last name" formControlName="lastName" [ngClass]="{'error': isValid('lastName')}">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password" formControlName="password" [ngClass]="{'error': isValid('password')}">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" [ngClass]="{'error': isValid('confirmPassword')}">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="email" placeholder="email" formControlName="email" [ngClass]="{'error': isValid('email')}">
+      </mat-form-field>
+      <!-- <mat-form-field>
+        <input matInput placeholder="Email"  type="email" formControlName="email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field> -->
+      <button mat-raised-button color="primary" >Register</button>
+    </form>
+  </div>
 </mat-card>
