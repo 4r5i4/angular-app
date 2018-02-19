@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
     moduleId: module.id,
@@ -16,7 +17,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class RegisterComponent {
     form;
-    constructor(private fb: FormBuilder){
+    constructor(private fb: FormBuilder, private auth: AuthService){
         this.form = fb.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
@@ -33,6 +34,7 @@ export class RegisterComponent {
         console.log('this.form:', this.form);
         console.log('this.form.valid', this.form.valid);
         console.log('this.form.errors', this.form.errors);
+        this.auth.register(this.form.value);
 
     }
     // custom validattion and error handling
