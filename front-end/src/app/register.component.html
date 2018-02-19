@@ -16,10 +16,14 @@
       <mat-form-field>
         <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" [ngClass]="{'error': isValid('confirmPassword')}">
       </mat-form-field>
+      <span *ngIf="form.errors?.misMatchedFields">
+        Passwords do not match
+      </span>
       <br>
       <mat-form-field>
         <input matInput type="email" placeholder="email" formControlName="email" [ngClass]="{'error': isValid('email')}">
       </mat-form-field>
+
       <!-- <mat-form-field>
         <input matInput placeholder="Email"  type="email" formControlName="email" [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
