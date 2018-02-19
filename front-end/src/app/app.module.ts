@@ -21,6 +21,7 @@ import {
 import { NavComponent } from './nav.component';
 import { HomeComponent } from './home.component';
 import { RegisterComponent } from './register.component';
+import { AuthService } from './auth.service';
 
 let routes = [
   {
@@ -72,7 +73,8 @@ let routes = [
     ReactiveFormsModule
   ],
   providers: [
-    WebService
+    WebService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

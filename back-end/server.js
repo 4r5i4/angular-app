@@ -38,6 +38,7 @@ app.use(function(req, res, next){
 
 
 var api = express.Router();
+var auth = express.Router();
 
 api.get('/messages', function(req, res) {
     res.json(messages);
@@ -60,6 +61,12 @@ api.post('/messages', function(req, res) {
     res.json(req.body);
 });
 
+auth.post('/register', function(req, res) {
+    console.log('i am here');
+    res.json(req.body);
+});
+
 app.use('/api', api);
+app.use('/auth', auth);
 
 app.listen(3000);
