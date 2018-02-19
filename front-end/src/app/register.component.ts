@@ -42,6 +42,11 @@ export class RegisterComponent {
         return this.form.controls[control].invalid && this.form.controls[control].touched;
     }
 
+    registerButtonDisabledToggle(){
+        // Initially this.form.vali evaluates to false therefore we would return false otherwise true.
+        return this.form.valid ? false : true;
+    }
+
 }
 
 function matchingFields(field1, field2) {

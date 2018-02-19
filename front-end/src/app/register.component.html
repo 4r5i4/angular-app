@@ -28,7 +28,7 @@
         <input matInput placeholder="Email"  type="email" formControlName="email" [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field> -->
-      <button mat-raised-button color="primary" >Register</button>
+      <button mat-raised-button color="primary" disabled={{registerButtonDisabledToggle()}}>Register</button>
     </form>
   </div>
 </mat-card>
