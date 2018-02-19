@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
+var _ = require('lodash');
 var bodyParser = require('body-parser');
+var users = [];
 var messages = [
     {
         text: 'I\'m the lead dev',
@@ -62,7 +64,13 @@ api.post('/messages', function(req, res) {
 });
 
 auth.post('/register', function(req, res) {
-    console.log('i am here');
+
+    // TODO: Need to make sure that we have the required data in the backend in case there is bypassing of it in the front-end validation:
+    // before "saving" the new user, make sure that it doesn't already exist. if so TODO: return something saying hey you already exist
+    let newUser = req.body;
+    _.some(users, newUser) ?
+    console.log('WARNING: user already exists') :
+    users.push(newUser);
     res.json(req.body);
 });
 
