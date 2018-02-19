@@ -1,17 +1,43 @@
 <mat-card class="card" color="grey">
-<div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="First name">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-          <input matInput placeholder="Last name">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-          <input matInput placeholder="Email" [formControl]="email" required>
-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <button mat-raised-button color="primary">Register</button>
-</div>
-</mat-card>
+    <div class="example-container">
+  
+      <mat-form-field>
+        <input matInput placeholder="First name" [formControl]="firstName">
+        <mat-error *ngIf="firstName.invalid">{{getTextErrorMessage()}}</mat-error>
+      </mat-form-field>
+  
+      <br>
+  
+      <mat-form-field>
+        <input matInput [formControl]="lastName" placeholder="Last name">
+        <mat-error *ngIf="lastName.invalid">{{getTextErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field>
+        <input matInput [formControl]="password" placeholder="Password" type="password">
+        <mat-error *ngIf="password.invalid">{{getTextErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [formControl]="confirmPassword" placeholder="Confirm Password" type="password">
+        <mat-error *ngIf="confirmPassword.invalid">{{getTextErrorMessage()}}</mat-error>
+        <!-- <mat-error *ngIf="confirmPassword.invalid">{{confirmPasswordIntegrity()}}</mat-error> -->
+      </mat-form-field>
+
+      
+      <br>
+  
+      <mat-form-field>
+        <input matInput placeholder="Email" [formControl]="email" m>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+  
+      <br>
+
+      <button mat-raised-button color="primary" >Register</button>
+  
+    </div>
+  </mat-card>
+  
