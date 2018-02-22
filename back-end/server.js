@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var _ = require('lodash');
+var jwt = require('jsonwebtoken');
 var bodyParser = require('body-parser');
 var users = [];
 var messages = [
@@ -65,13 +66,32 @@ api.post('/messages', function(req, res) {
 
 auth.post('/register', function(req, res) {
 
+    let newUser = req.body;
+
     // TODO: Need to make sure that we have the required data in the backend in case there is bypassing of it in the front-end validation:
     // before "saving" the new user, make sure that it doesn't already exist. if so TODO: return something saying hey you already exist
-    let newUser = req.body;
-    _.some(users, newUser) ?
-    console.log('WARNING: user already exists') :
-    users.push(newUser);
-    res.json(req.body);
+    if(_.some(users, newUser)){
+        console.log('WARNING: user already exists')
+    }else{
+        // Acknowledge the new user
+        // console.log(newUser);
+
+        users.push(newUser);
+
+        // create a token. Since we dont have the user.id for a database, we will use the index of that user instead:
+        let index = _.indexOf(users, newUser)
+        newUser.id = index;
+
+        console.log(newUser)
+
+        // for learning sake, we are using the secret 123, but never ever do this in production
+        var token = jwt.sign(newUser.id, '123');
+        console.log(token);
+        res.json({firstName: newUser.firstName, token});
+
+        
+    }
+    // res.json(token);
 });
 
 app.use('/api', api);
