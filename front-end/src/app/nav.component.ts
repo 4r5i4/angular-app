@@ -16,6 +16,7 @@ import { AuthService } from './auth.service';
             <button mat-button routerLink="/messages">Messages</button>
             <button mat-raised-button color="warn" routerLink="/delete" (click)="deleteDelegate()">Delete All Messages</button>
             <span class="example-fill-remaining-space"></span>
+            <button mat-button *ngIf="!authService.isAuthenticated" routerLink="/login">login</button>
             <button mat-button *ngIf="!authService.isAuthenticated" routerLink="/register">Register</button>
             <button mat-button color="warn" *ngIf="authService.isAuthenticated" >Welcome {{authService.name}}</button>
             <button mat-button *ngIf="authService.isAuthenticated" (click)="authService.logout()" >Logout</button>

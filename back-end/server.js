@@ -3,7 +3,12 @@ var app = express();
 var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bodyParser = require('body-parser');
-var users = [];
+var users = [{
+    firstName: 'amsen',
+    email: 'amsen@me.com',
+    password: 'amsen',
+    id: 0
+}];
 var messages = [
     {
         text: 'I\'m the lead dev',
@@ -64,6 +69,16 @@ api.post('/messages', function(req, res) {
     res.json(req.body);
 });
 
+auth.post('/login', (req, res)=>{
+    var user = users.find(user => user.email == req.body.email);
+    if(!user) sendAuthError(res);
+    if(user.password == req.body.password){
+        sendToken(user, res);
+    }else{
+        sendAuthError(res);
+    }
+});
+
 auth.post('/register', function(req, res) {
 
     let newUser = req.body;
@@ -82,18 +97,23 @@ auth.post('/register', function(req, res) {
         let index = _.indexOf(users, newUser)
         newUser.id = index;
 
-        console.log(newUser)
+        console.log(newUser);
 
         // for learning sake, we are using the secret 123, but never ever do this in production
-        var token = jwt.sign(newUser.id, '123');
-        console.log(token);
-        res.json({firstName: newUser.firstName, token});
-
-        
+        sendToken(newUser, res);
     }
     // res.json(token);
 });
 
+function sendAuthError(res){
+    return res.json({success: false, message: 'email or password incorrect'});
+}
+
+function sendToken(newUser, res){
+    var token = jwt.sign(newUser.id, '123');
+    console.log(token);
+    res.json({firstName: newUser.firstName, token});
+}
 app.use('/api', api);
 app.use('/auth', auth);
 
