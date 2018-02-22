@@ -24,19 +24,37 @@ export class AuthService {
         delete user.confirmPassword;
         this.http.post(this.BASE_URL + '/register', user).subscribe( res => {
 
-            let authResponse = res.json();
-            if (!authResponse.token) {
-                return;
-            }
-            localStorage.setItem(this.TOKEN_KEY, authResponse.token);
-            localStorage.setItem(this.NAME_KEY, authResponse.firstName);
-            this.router.navigate(['/']);
+            this.authenticate(res);
+            // let authResponse = res.json();
+            // if (!authResponse.token) {
+            //     return;
+            // }
+            // localStorage.setItem(this.TOKEN_KEY, authResponse.token);
+            // localStorage.setItem(this.NAME_KEY, authResponse.firstName);
+            // this.router.navigate(['/']);
         });
     }
 
     logout() {
         localStorage.removeItem(this.NAME_KEY);
         localStorage.removeItem(this.TOKEN_KEY);
+        this.router.navigate(['/']);
+    }
+
+    login(loginData) {
+        this.http.post(this.BASE_URL + '/login', loginData).subscribe( res => {
+            console.log(res.json());
+            this.authenticate(res);
+        });
+    }
+
+    authenticate(res) {
+        let authResponse = res.json();
+        if (!authResponse.token) {
+            return;
+        }
+        localStorage.setItem(this.TOKEN_KEY, authResponse.token);
+        localStorage.setItem(this.NAME_KEY, authResponse.firstName);
         this.router.navigate(['/']);
     }
 }
