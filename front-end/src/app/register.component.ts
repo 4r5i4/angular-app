@@ -17,7 +17,7 @@ import { AuthService } from './auth.service';
 })
 export class RegisterComponent {
     form;
-    constructor(private fb: FormBuilder, private auth: AuthService){
+    constructor(private fb: FormBuilder, private auth: AuthService) {
         this.form = fb.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
