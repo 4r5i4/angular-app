@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 //middleware to allow CORS since our API end point will most likely be at a different port/URL as our front-end
 app.use(function(req, res, next){
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Accept');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Accept, Authorization');
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     //let express know we're done:
     next();
@@ -68,6 +68,11 @@ api.post('/messages', function(req, res) {
     messages.push(req.body);
     res.json(req.body);
 });
+
+api.get('/users/me', checkAuthenticated, (req, res) => {
+    console.log('@@@@@@@@@@@@@@', req.user);
+    res.json(users[req.user]);
+})
 
 auth.post('/login', (req, res)=>{
     var user = users.find(user => user.email == req.body.email);
@@ -113,6 +118,18 @@ function sendToken(newUser, res){
     var token = jwt.sign(newUser.id, '123');
     console.log(token);
     res.json({firstName: newUser.firstName, token});
+}
+
+function checkAuthenticated(req, res, next) {
+    if(!req.header('authorization'))
+        return res.status(401).send({message: 'Unauthorized request. Missing authentication header'});
+
+    var token = req.header('authorization').split(' ')[1];
+    var payload = jwt.decode(token, '123');
+    if(!payload)
+        return res.status(401).send({message: 'unauthorized request. Authentication header is invalid'});
+    req.user = payload;
+    next();
 }
 app.use('/api', api);
 app.use('/auth', auth);

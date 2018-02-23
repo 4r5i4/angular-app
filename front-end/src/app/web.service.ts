@@ -3,6 +3,8 @@ import 'rxjs/add/operator/toPromise';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Subject } from 'rxjs/rx';
+import { AuthService } from './auth.service';
+import 'rxjs/add/operator/map';
 
 
 @Injectable()
@@ -15,7 +17,7 @@ export class WebService {
     private messageSubject = new Subject();
     messages = this.messageSubject.asObservable();
 
-    constructor(private http: Http, private sb: MatSnackBar){
+    constructor(private http: Http, private sb: MatSnackBar, private authService: AuthService){
         // it's guaranteed that by the time we are calling our service, we have a response back
         // from getMessages(), we don't have to wait for another component to initially trigger it.
         this.getMessages(name);
@@ -36,6 +38,9 @@ export class WebService {
 
     }
 
+    getUser(){
+        return this.http.get(this.BASE_URL + '/users/me', this.authService.tokenHeader).map(res => res.json());
+    }
     async postMessage(newMessage) {
         try {
             var response = await this.http.post( this.BASE_URL + '/messages', newMessage).toPromise();

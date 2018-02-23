@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
+
 
 
 
@@ -18,6 +19,11 @@ export class AuthService {
 
     get isAuthenticated() {
         return !!localStorage.getItem(this.TOKEN_KEY);
+    }
+
+    get tokenHeader() {
+        var header = new Headers({'Authorization': 'Bearer ' + localStorage.getItem(this.TOKEN_KEY)});
+        return new RequestOptions({headers: header});
     }
     register(user) {
         // We should delete the confirmPassword as it is only a fron-end verification:
